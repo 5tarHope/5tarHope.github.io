@@ -1,13 +1,12 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import {
+  getDatabase,
   set,
   ref,
-  getDatabase,
   get,
-  child,
-} from "https://www.gstatic.com/firebasejs/9.9.4/firebase-database.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js";
-import profanities from "./profanities.js";
-import { firebaseConfig } from "../FIREBASE/signup-firebase.js";
+} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { firebaseConfig } from "../SIGNUP-PAGE/firebase";
+import { app } from "../SIGNUP-PAGE/firebase";
 
 export let userInfo = JSON.parse(localStorage.getItem("user"));
 export function save(location) {
