@@ -5,6 +5,7 @@ import {
   set,
   ref,
   get,
+  update,
 } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 import {
   createUserWithEmailAndPassword,
@@ -154,7 +155,7 @@ function signUp(email, password) {
           dismissLoading();
           break;
       }
-      console.log(errorCode);
+      console.log(error);
     });
 }
 
