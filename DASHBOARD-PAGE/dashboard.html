@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sus City</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/056eae0c7b.js" crossorigin="anonymous"></script>
+  </script>
+</head>
+
+
+<script>
+  let playSound = () => new Audio("/SOUNDS/menuclick.mp3").play();
+</script>
+
+<body>
+  <!--top menu bar-->
+  <header class="top-menu-bar">
+    <div class="logo">SUS CITY LOGO</div>
+    <div class="Info">
+      <div class="words">
+          <div>WELCOME, USERNAME!</div>
+          <div>SUS POINTS: </div>
+      </div>
+      <button class="fa-solid fa-user btn"></button>
+      <button class="fa-solid fa-gear btn"></button>
+    </div>
+    <!-- back to login page -->
+    <!--env sus bar-->
+
+    
+    <!-- <form action="/SHOP-PAGE/shop.html" method="get">
+      <input class="passUserInfo" type="hidden" name="userInfo" />
+      <button class="fa-solid fa-shop" onclick="playSound()" class="shop btn"></button>
+    </form> -->
+  </header>
+  <div class="navigator">
+    <div class="circle"></div>
+    <div class="mainCont">
+      <div class="box">
+        <div class="sword">Newsletter/Updates</div>
+        <div></div>
+      </div>
+      <div class="box">
+        <div class="sword">Analysis Area</div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script type="module" src="dashboard.js"></script>
+</body>
+
+</html>
