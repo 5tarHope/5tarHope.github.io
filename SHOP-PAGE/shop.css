@@ -9,12 +9,12 @@
 }
 body {
   font-family: "Poppins", sans-serif;
-  background: #f3e3ca;
+  background: #253F20;
   width: 100%;
 }
 
 header {
-  background-color: #648c87;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,7 +49,7 @@ h1 {
 .ProductCont {
   padding: 30px;
   display: flex;
-  background-color: #476a5d;
+  background-color: white;
   flex-direction: column;
   text-align: center;
   font-family: arial;
@@ -93,7 +93,7 @@ h1 {
   image-rendering: pixelated;
   width: 100%;
   height: 100%;
-  background-color: #f3e3ca;
+  background-color: black;
 }
 
 .ProductInfo {
