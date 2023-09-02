@@ -23,39 +23,49 @@
 
 <body>
   <!--top menu bar-->
-  
   <div class="top-menu-bar">
     <!-- back to login page -->
     <button class=" fa-solid fa-right-from-bracket btn" id="return" onclick="playSound()">
-    <button class="fa-solid fa-volume-high" onclick="playSound()" id="muteButton"></button>
-
+      <!-- <button class="fa-solid fa-volume-high" onclick="playSound()" id="muteButton"></button> -->
     </button>
-    <!--env sus bar-->
-    <div class="env-sus-bar">
-      <div class="circle"></div>
-      <div class="rectangle">
-        <div class="level-progress"></div>
+    <!--material bars-->
+    <div class="bar-container">
+      <div class="material-bar">
+        <div class="circle material"></div>
+        <div class="rectangle material">
+          <div class="level-progress"></div>
+        </div>
+      </div>
+      <div class="material-bar">
+        <div class="circle public-sat"></div>
+        <div class="rectangle public-sat">
+          <div class="level-progress"></div>
+        </div>
+      </div>
+      <div class="material-bar">
+        <div class="circle energy"></div>
+        <div class="rectangle energy">
+          <div class="level-progress"></div>
+        </div>
+      </div>
+      <div class="material-bar">
+        <div class="circle pollution"></div>
+        <div class="rectangle pollution">
+          <div class="level-progress"></div>
+        </div>
       </div>
     </div>
-    <button class="fa-solid fa-shop" onclick="playSound()" class="shop btn"></button>
-    
-    <!-- <form action="/SHOP-PAGE/shop.html" method="get">
-      <input class="passUserInfo" type="hidden" name="userInfo" />
-      <button class="fa-solid fa-shop" onclick="playSound()" class="shop btn"></button>
-    </form> -->
-    <!--shop-->
-    <div class="GPoint"></div>
-    <!--setting-->
-    <div class="favour"></div>
-
+    <button class="fa-solid fa-cart-shopping" onclick="playSound()" class="shop btn"></button>
+    <div>
+      <p>Name of area: XXX</p>
+      <p>SUS POINTS: XXX</p>
+    </div>
+    <button class="fa-solid fa-circle-user" onclick="playSound()" class="btn"></button>
+    <button class="fa-solid fa-gear" onclick="playSound()" class="btn"></button>
   </div>
   <div class="main-menu">
     <div class="city-layout">
-      <!--draggable person for 3d-->
-      <!-- <div class="personbtn">
-        <i class="fa-solid fa-person" draggable="true"></i>
-      </div> -->
-      <img id="city-image" src="/BASE DEVELOPMENTS/BASE-0.png" alt="Image Of City">
+      <img id="city-image" src="" alt="3D GQ of area">
     </div>
     <!--city-->
     <!--console aka 'gods phone'-->
@@ -76,9 +86,7 @@ ___       ___     __   __        __   __        ___
         </div>
         <div id="inputCont">
           <input id="terminalTextInput" type="text" placeholder="Try /help" autocomplete="off">
-          <div>
-            <button class="fa-regular fa-paper-plane" id="sendBtn" onclick="playSound()"></button>
-          </div>
+          <button class="fa-regular fa-paper-plane" id="sendBtn" onclick="playSound()"></button>
         </div>
       </div>
     </div>

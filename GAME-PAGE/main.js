@@ -1,29 +1,17 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import {
-  getDatabase,
   set,
   ref,
   get,
+  child,
 } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { firebaseConfig } from "../SIGNUP-PAGE/firebase";
-import { app } from "../SIGNUP-PAGE/firebase";
+import { db } from "../SIGNUP-PAGE/firebase.js";
 
 export let userInfo = JSON.parse(localStorage.getItem("user"));
 export function save(location) {
   console.log("Start Saving");
 
   localStorage.setItem("user", JSON.stringify(userInfo));
-  // axios({
-  //   method: "get",
-  //   url: decodeURIComponent(
-  //     "https%3A%2F%2Fstorage-api-qazw.onrender.com%2Fconfig"
-  //   ),
-  // }).then((response) => {
-  initializeApp(firebaseConfig);
-  set(
-    ref(getDatabase(), "users/" + localStorage.getItem("UID")),
-    userInfo
-  ).then(() => {
+  set(ref(db, "users/" + localStorage.getItem("UID")), userInfo).then(() => {
     if (location == "signup") {
       window.location.pathname = "/SIGNUP-PAGE/signup.html";
     } else if (location == "shop") {
@@ -34,47 +22,37 @@ export function save(location) {
       window.location.pathname = "/GAME-PAGE/main.html";
     }
   });
-  // });
 }
 
 async function getAllQuestions() {
   console.log("Getting Qns");
   let getData = new Promise(function (resolve) {
-    axios({
-      method: "get",
-      url: decodeURIComponent(
-        "https%3A%2F%2Fstorage-api-qazw.onrender.com%2Fconfig"
-      ),
-    }).then((response) => {
-      console.log("Getting Data");
-      initializeApp(response.data);
-      get(child(ref(getDatabase()), "questions"))
-        .then((snapshot) => {
-          console.log("Done.");
-          // return Object.values(snapshot.val())
-          resolve(Object.values(snapshot.val()));
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    });
+    get(child(ref(db), "questions"))
+      .then((snapshot) => {
+        console.log("Done.");
+        // return Object.values(snapshot.val())
+        resolve(Object.values(snapshot.val()));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   });
   let questions = await getData;
   return questions;
 }
 
 if (window.location.pathname == "/GAME-PAGE/main.html") {
-  let questionsDB = getAllQuestions();
   let arrayOfQuestions;
-  questionsDB
-    .then(function (questions) {
-      //QUESTIONS LOADED
-      console.log("Questions Loaded");
-      arrayOfQuestions = questions;
+
+  get(child(ref(db), "questions"))
+    .then((snapshot) => {
+      console.log("Questions Loaded.");
+      arrayOfQuestions = snapshot.val();
     })
     .catch((error) => {
-      console.log(error);
+      console.error("Error:", error);
     });
+
   //educational cutscene functions
   function redirectToYoutubeERP() {
     window.open("https://www.youtube.com/watch?v=EE6sSf4QAsg");
@@ -91,8 +69,7 @@ if (window.location.pathname == "/GAME-PAGE/main.html") {
 
   //getting values from html
   const cityLayout = document.querySelector(".city-layout"); //the playfield
-  const shopBtn = document.querySelector(".fa-shop");
-  const icon = muteButton.querySelector("fa-volume-xmark");
+  const shopBtn = document.querySelector(".fa-cart-shopping");
 
   function imageOverlay(imageSource, imageElement) {
     imageElement.src = imageSource; //source of image
@@ -289,16 +266,6 @@ if (window.location.pathname == "/GAME-PAGE/main.html") {
   //level indicator
   const levelIndicator = document.querySelector(".circle");
   const levelProgressBar = document.querySelector(".level-progress");
-  const levelGreenPoints = document.querySelector(".GPoint");
-  const levelFavour = document.querySelector(".favour");
-
-  if (levelFavour && levelProgressBar && levelGreenPoints && levelIndicator) {
-    levelFavour.textContent = "Sus Points: " + String(userInfo.favor);
-    levelGreenPoints.textContent =
-      "Leaf Stickers: " + String(userInfo.greenpoints);
-    levelIndicator.textContent = userInfo.level;
-    levelProgressBar.style.width = userInfo.levelProgress - 1 + "%";
-  }
 
   //terminal
   const terminalResultsCont = document.querySelector("#terminalResultsCont");
@@ -954,39 +921,6 @@ if (window.location.pathname == "/GAME-PAGE/main.html") {
 
     bgm3.play();
   });
-  muteButton.addEventListener("click", toggleMute);
-  if (localStorage.getItem("mutePreference") === "false") {
-    // Apply the muted state to the background music tracks
-    bgm1.muted = true;
-    bgm2.muted = true;
-    bgm3.muted = true;
-    onloadMusic.muted = true;
-
-    // Update the text/content of the mute button
-    muteButton.classList.remove("fa-volume-high");
-    muteButton.classList.add("fa-volume-xmark");
-  }
-
-  function toggleMute() {
-    // Toggle the mute functionality for each background music track
-    bgm1.muted = !bgm1.muted;
-    bgm2.muted = !bgm2.muted;
-    bgm3.muted = !bgm3.muted;
-    // Define the icon variable here
-
-    // Update the text of the mute button
-    if (muteButton.classList.contains("fa-volume-xmark")) {
-      // Replace the "fa-volume-xmark" class with the new icon class
-      muteButton.classList.remove("fa-volume-xmark");
-      muteButton.classList.add("fa-volume-high");
-      localStorage.setItem("mutePreference", "true");
-    } else {
-      // Replace the "fa-volume-mute" class with the new icon class
-      muteButton.classList.remove("fa-volume-high");
-      muteButton.classList.add("fa-volume-xmark");
-      localStorage.setItem("mutePreference", "false");
-    }
-  }
 
   updateOverlay();
   // Update developmentCount upon loading

@@ -1,58 +1,50 @@
 /* /main page/ */
 
+html {
+  padding: 0;
+}
+
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  margin: 2%;
-  border-radius: 3.6540803897685747vh;
-  /* background-image: url("/main-background.jpeg"); */
-  /* background-size: 460px, 360px, auto; */
-  background-repeat: no-repeat;
-  background-color: #f3e3ca;
+  background-color: #253f20;
+  font-family: "Roboto", "Helvetica Neue", "Lucida Grande", sans-sherif;
+  margin: 0;
+  overflow: hidden;
 }
 
-
-
 .top-menu-bar {
-  flex: 1;
   display: flex;
   flex-direction: row;
-  background-color: #648c87;
+  background-color: #ffffff;
   align-items: center;
-  justify-content: space-evenly;
-  height: 9vh;
-  border-radius: inherit;
+  justify-content: space-around;
+  flex: 1;
+  height: 13vh;
+  margin: 0;
 }
 
 .circle {
-  background-color: #3a651f;
-  width: 6.090133982947624vh;
-  height: 6.090133982947624vh;
+  /* background-color:; */
+  width: 4.5vh;
+  height: 4.5vh;
   border-radius: 50%;
-  font-family: "Abel", sans-serif;
-  font-size: 3.045066991473812vh;
-  color: whitesmoke;
-  display: flex;
-  justify-content: center; /* align horizontal */
-  align-items: center;
-  z-index: 1;
+  font-size: 2vh;
+  color: #ffffff;
 }
 
 .rectangle {
   width: 90%;
-  height: 4.8721071863581vh;
-  background-color: #3a651f;
+  height: 2.5vh;
+  /* background-color: inherit; */
   position: relative;
-  left: calc(-8.526187576126675vh / 2);
-  /* /width of circle/2 -> radius of circle + margin of env-sus-bar/ */
+  left: calc(
+    -8.526187576126675vh / 2
+  ); /* /width of circle/2 -> radius of circle + margin of env-sus-bar/ */
   border-radius: 10px;
-  z-index: 0;
-  display: flex;
 }
 
 .level-progress {
-  /* width: 40%; */
   margin-top: 1%;
   margin-bottom: 1%;
   background-color: whitesmoke;
@@ -60,13 +52,24 @@ body {
   border-radius: inherit;
 }
 
-.env-sus-bar {
+.material-bar {
   display: flex;
-  width: 40%;
   height: inherit;
   flex-direction: row;
   float: left;
   align-items: center;
+  padding: 1.5%;
+}
+
+.bar-container {
+  display: grid;
+  width: 60%;
+  grid-template-columns: 50% 50%;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .btn {
@@ -87,14 +90,6 @@ body {
   cursor: pointer;
 }
 
-.username,
-.GPoint,
-.favour {
-  font-family: "Abel", sans-serif;
-  display: flex;
-  font-size: 20px;
-}
-
 .account {
   float: left;
 }
@@ -107,12 +102,12 @@ body {
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  padding: 1.5vw;
 }
 
 .city-layout {
   background-color: #d9d9d9;
   float: left;
-  /* /border-radius: inherit;/ */
   display: flex;
   flex-wrap: wrap;
   margin-right: 4%;
@@ -144,21 +139,17 @@ html {
   box-sizing: inherit;
 }
 
-body {
-  font-family: "Roboto", "Helvetica Neue", "Lucida Grande", sans-sherif;
-}
-
 .mainCont {
   margin: 0;
   background-color: black;
+  border: 4px solid white;
   color: green;
   display: flex;
   flex-direction: column;
   float: right;
   height: 80vh;
   width: 37.05902777777778vw;
-  border-radius: 10px;
-
+  /* border-radius: 10px; */
 }
 .mainCont h2 {
   display: inline-block;
@@ -170,7 +161,7 @@ body {
   height: 10vh;
   width: auto;
   font-size: 1vw;
-  color: aquamarine;
+  color: #ffff;
 }
 .terminalCont {
   height: 100%;
@@ -185,7 +176,6 @@ body {
   justify-content: flex-end;
   overflow-y: auto;
   border-radius: 10px;
-
 }
 #terminalResultsCont {
   color: green;
@@ -199,8 +189,9 @@ body {
 #terminalTextInput {
   background: inherit;
   display: block;
-  border-color: rgb(194, 194, 194);
-  width: 100%;
+  padding: 0.2vw;
+  border: 1px solid white;
+  width: 90%;
   color: green;
   font-size: 20px;
   font-family: "Abel", sans-serif;
@@ -215,10 +206,11 @@ body {
   justify-content: space-between;
 }
 .fa-paper-plane {
-  color: green;
+  color: white;
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
+  border-color: transparent;
 }
 .terminalResultWrapper {
   overflow-y: auto;
@@ -247,6 +239,18 @@ body {
   height: inherit;
   z-index: 1;
   max-width: 100%;
+}
+.material {
+  background-color: #b1f8f2;
+}
+.energy {
+  background-color: #e4b363;
+}
+.public-sat {
+  background-color: #ef5b5b;
+}
+.pollution {
+  background-color: #312509;
 }
 
 /* the animation part from some tutorial*/
@@ -314,7 +318,3 @@ body {
     opacity: 0;
   }
 }
-
-
-/* adjfksjdalfkjals;jdf;lkas;ldjflasd;lkfjlasd;flkjasdl;jfklasjdfkjasdlkfjlkasdjfljaldksf */
-
