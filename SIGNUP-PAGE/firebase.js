@@ -6,6 +6,7 @@ import {
   ref,
   get,
   update,
+  child,
 } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 import {
   createUserWithEmailAndPassword,
@@ -89,6 +90,7 @@ function dismissLoading() {
 
 function signUp(email, password) {
   console.log("Signing In");
+  showLoading();
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -96,8 +98,9 @@ function signUp(email, password) {
       update(ref(db, "users/" + user.uid), {
         last_login: lgDate,
       }).then(() => {
-        get(ref(db, "users/" + user.uid), user.uid).then((snapshot) => {
-          navigateGame(user.uid, snapshot.val());
+        get(ref(db, "users/" + user.uid), user.uid).then(() => {
+          dismissLoading();
+          navigateGame(user.uid);
         });
       });
     })
@@ -105,6 +108,7 @@ function signUp(email, password) {
       const errorCode = error.code;
       switch (errorCode) {
         case "auth/user-not-found":
+          showLoading();
           createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               const user = userCredential.user;
@@ -119,16 +123,17 @@ function signUp(email, password) {
                 done.classList.add("visible");
               }
               set(ref(db, "users/" + user.uid), defaultUser).then(() => {
+                dismissLoading();
                 if (confirm("Do you want a tutorial?")) {
                   showTutorial();
                   done.onclick = () => {
                     video.classList.remove("visible");
                     done.classList.remove("visible");
                     showLoading();
-                    navigateGame(user.uid, defaultUser);
+                    navigateGame(user.uid);
                   };
                 } else {
-                  navigateGame(user.uid, defaultUser);
+                  navigateGame(user.uid);
                 }
               });
             })
@@ -159,15 +164,15 @@ function signUp(email, password) {
     });
 }
 
-function navigateGame(uid, snapshot) {
-  console.log("Start Saving");
+export let arrayOfQuestions = null;
+
+function navigateGame(uid) {
   localStorage.setItem("UID", uid);
-  // localStorage.setItem("user", JSON.stringify(snapshot));
-  console.log("End Saving");
-  if (localStorage.getItem("UID") == uid) {
-    console.log("Going to game");
+  if (localStorage.getItem("UID")) {
     window.location.pathname = "/GAME-PAGE/main.html";
   }
+  // localStorage.setItem("user", JSON.stringify(snapshot));
+  console.log("navigating");
 }
 
 // MAIN CODE
