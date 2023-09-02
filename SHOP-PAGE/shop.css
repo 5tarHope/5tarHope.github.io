@@ -61,12 +61,13 @@ h1 {
 }
 
 .Buybtn {
-  background-color: rgb(26, 190, 78);
+  background-color: #253F20;
   padding: 3%;
   border-radius: 12px;
   font-family: "Abel", sans-serif;
   font-size: 20px;
   font-size: 1.3vw;
+  color: white
 }
 
 .fa-solid {
