@@ -1,6 +1,6 @@
 AUTOPSY REPORT
 
-Name: Chew Keng Yik Eason
+Name: John Doe
 Age:
 Gender:
 Address:
